@@ -8,7 +8,7 @@ class Bai2
         Animal indenfity = new Animal();
         indenfity.MakeSound();
         Animal dog = new Dog();
-        dog.MakeSound(); // => output: gọi method MakeSound ở class con vì bị ghi đè (có tính đa hình)
+        dog.MakeSound();
         Animal cat = new Cat();
         cat.MakeSound();
     }

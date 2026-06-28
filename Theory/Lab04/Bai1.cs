@@ -6,7 +6,7 @@ class Bai1
 {
     public static void Main(string[] args)
     {
-        // test
+
         HandleMultipleExceptions("123", 2);
         HandleMultipleExceptions("123a", 6);
         HandleMultipleExceptions("123", 9);

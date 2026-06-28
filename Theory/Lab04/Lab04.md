@@ -49,3 +49,8 @@ Lớp con `Dog` override `MakeSound()` và throw `NotImplementedException`. Code
 - `virtual` / `override` / `new` trong kế thừa C#
 - Tính đa hình (Polymorphism) qua kiểu tham chiếu
 - Xử lý exception trong ngữ cảnh OOP
+
+## Chạy project
+
+Project có nhiều hàm `Main`. Chọn bài cần chạy làm startup object trong IDE trước
+khi thực thi.
