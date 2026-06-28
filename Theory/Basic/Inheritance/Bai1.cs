@@ -49,7 +49,6 @@ namespace Basic.Inheritance
             get{ return _soNgayNghi; }
         }
 
-        // Constructor
         public NhanVien()
         {
             DateTime d = DateTime.Now;
@@ -60,7 +59,7 @@ namespace Basic.Inheritance
             _heSoLuong = 0.0;
         }
         public NhanVien(string maNv, string tenNv, double heSoLuong)
-        { 
+        {
             DateTime d = DateTime.Now;
             _maNv = maNv;
             _tenNv = tenNv;
@@ -69,15 +68,13 @@ namespace Basic.Inheritance
             _soNgayNghi = 0;
         }
 
-        // method tính phụ cấp thâm niên
         public double tinhPhuCap()
         {
             DateTime d = DateTime.Now;
             int dateNow = d.Year;
             return ((dateNow - _namVaoLam) * _luongCoBan) / 100;
-        }        
+        }
 
-        // method xét thi đua sinh viên
         public char xetThiDua()
         {
             if(_soNgayNghi <= 1) return 'A';
@@ -85,13 +82,12 @@ namespace Basic.Inheritance
             else return 'C';
         }
 
-        // method tính hệ số thi đua
         public double heSoThiDua()
         {
             char result = this.xetThiDua();
             switch(result)
             {
-                case 'A': 
+                case 'A':
                     return 1.0;
                 case 'B':
                     return 0.75;
@@ -99,13 +95,12 @@ namespace Basic.Inheritance
                     return 0.5;
             }
         }
-        // method tính lương nhân viên
+
         public double nhanVien()
         {
             return  _luongCoBan * this.heSoThiDua() * _heSoLuong + this.tinhPhuCap();
         }
 
-        // method nhập thông tin nhân viên
         public void input()
         {
             Console.Write("Nhập id nhân viên: ");
@@ -118,10 +113,9 @@ namespace Basic.Inheritance
             _heSoLuong = double.Parse(Console.ReadLine() ?? "0.0");
         }
 
-        // method in ra thông tin nhân viên
         public void output()
         {
-            Console.WriteLine($"Mã: {_maNv} | Tên: {_tenNv} | Hệ số lương: {_heSoLuong} | " + 
+            Console.WriteLine($"Mã: {_maNv} | Tên: {_tenNv} | Hệ số lương: {_heSoLuong} | " +
             $"Năm vào làm: {_namVaoLam} | Số ngày nghỉ: {_soNgayNghi}");
         }
     }
@@ -137,7 +131,7 @@ namespace Basic.Inheritance
 
         private string _phongBan;
         public string phongBan
-        { 
+        {
             set{ _phongBan = value; }
             get{ return _phongBan; }
         }
@@ -149,7 +143,6 @@ namespace Basic.Inheritance
             get{ return _heSoCanBo; }
         }
 
-        // Constructor
         public CanBo() : base()
         {
             _chucVu = "Trưởng phòng";

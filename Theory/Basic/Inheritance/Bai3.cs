@@ -30,7 +30,7 @@ namespace Basic.Inheritance
             }
             set
             {
-                // kiểm tra 
+
                 if( DateTime.TryParse( value, out DateTime result))
                 {
                     _date = result;
@@ -62,7 +62,6 @@ namespace Basic.Inheritance
             }
         }
 
-        // Constructor
         public People()
         {
             name = "";
@@ -77,7 +76,6 @@ namespace Basic.Inheritance
             this.sex = sex;
         }
 
-        // method
         public virtual void xuat()
         {
             Console.WriteLine($"Name: {name} | Date: {date} | Sex: {sex}");
@@ -151,7 +149,6 @@ namespace Basic.Inheritance
             }
         }
 
-        // Constructor
         public SinhVien() : base()
         {
             id = "";
@@ -166,7 +163,6 @@ namespace Basic.Inheritance
             this.heDaoTao = heDaoTao;
         }
 
-        // method
         public override void xuat()
         {
             base.xuat();

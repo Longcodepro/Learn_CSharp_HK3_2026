@@ -40,19 +40,17 @@ namespace Basic.Inheritance
             get{ return _maHang; }
         }
 
-        // Constructor
         public hangHoa()
         {
             tenHang = "";
             maHang = "";
-        }        
+        }
         public hangHoa(string maHang, string tenHang)
         {
             this.maHang = maHang;
             this.tenHang = tenHang;
         }
 
-        // method
         private bool checkMaHangHoa(string maHang)
         {
             string phanSo = maHang.Substring(2);
@@ -74,7 +72,7 @@ namespace Basic.Inheritance
     class nuocGiaiKhat : hangHoa
     {
         private string[] listDonViTinh = {"két", "thùng", "chai", "lon"};
-        
+
         private string _donViTinh = "";
         public string donViTinh
         {
@@ -91,7 +89,7 @@ namespace Basic.Inheritance
             }
             get{ return _donViTinh; }
         }
- 
+
         private int _soLuong;
         public int soLuong
         {
@@ -120,7 +118,6 @@ namespace Basic.Inheritance
             get{ return _donGia; }
         }
 
-        // Constructor
         public nuocGiaiKhat() : base()
         {
             donViTinh = "";
@@ -128,7 +125,7 @@ namespace Basic.Inheritance
             soLuong = 0;
         }
 
-        public nuocGiaiKhat(string maHang, string tenHang, string donViTinh, int soLuong, double donGia) 
+        public nuocGiaiKhat(string maHang, string tenHang, string donViTinh, int soLuong, double donGia)
         : base(maHang, tenHang)
         {
             this.donViTinh = donViTinh;
@@ -136,10 +133,9 @@ namespace Basic.Inheritance
             this.donGia = donGia;
         }
 
-        // method
         public override void xuat()
         {
-            base.xuat(); 
+            base.xuat();
             Console.WriteLine($"Đơn vị tính: {donViTinh} | Số lượng: {soLuong} | Đơn gía: {donGia}");
         }
 
