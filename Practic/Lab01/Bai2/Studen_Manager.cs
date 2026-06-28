@@ -1,37 +1,31 @@
 using System;
-namespace Lab05.Bai2;
+namespace Lab01.Bai2;
 
 class Student_Manager
 {
     private Dictionary<string, Student> dicStudent = new Dictionary<string, Student>();
-    
+
     public static void Main(string[] args)
     {
-        // tạo đối tượng hệ thống quản lý student
+
         Student_Manager stSys = new Student_Manager();
 
-        // Add dữ liệu
         stSys.dicStudent.Add("Nguyen Van A", new Student("HS001", "Nguyen Van A", 4));
-        stSys.dicStudent.Add("Nguyen Van B", new Student("HS002", "Nguyen Van B", 7));   
+        stSys.dicStudent.Add("Nguyen Van B", new Student("HS002", "Nguyen Van B", 7));
         stSys.dicStudent.Add("Nguyen Van C", new Student("HS003", "Nguyen Van C", 8));
 
-        // in thông tin các student
         stSys.PrintInfoStudent();
 
-        // check Q1
         Console.WriteLine("--------------Q1----------------");
         stSys.AddStudentSafe(new Student("HS004", "Nguyen Van D", 10 ));
         stSys.PrintInfoStudent();
 
-        // check Q2
         Console.WriteLine("--------------Q2----------------");
-        stSys.FindStudentMaxPoint();        
+        stSys.FindStudentMaxPoint();
 
-        // check Q3
         Console.WriteLine("--------------Q3----------------");
         stSys.PrintInfoStudent(stSys.TransferDicToList());
 
-        // check A1
         Console.WriteLine("--------------A1----------------");
         Repository<string, Student> repoStudent =  new Repository<string, Student>();
         repoStudent.Add("Nguyen Van A", new Student("HS001", "Nguyen Van A", 8));
@@ -40,17 +34,14 @@ class Student_Manager
         Student result = repoStudent.GetValueByKey("Nguyen Van");
         repoStudent.PrintRepo();
 
-        // check A2
         Console.WriteLine("--------------A2----------------");
         result = stSys["Nguyen Va"];
         if( result != null) result.PrintInfo();
 
-        // check A3
         Console.WriteLine("--------------A3----------------");
         stSys.PrintBetterOrEqualsPoint(7.0f);
     }
 
-    // in thông tin các student
     public void PrintInfoStudent()
     {
         Console.WriteLine("[Thông tin các student từ Dictionary]");
@@ -70,7 +61,6 @@ class Student_Manager
         }
     }
 
-    // [Q1] method add một student mới tránh bị trùng key
     public void AddStudentSafe(Student newStudent)
     {
         if( dicStudent.ContainsKey(newStudent.Name) )
@@ -84,7 +74,6 @@ class Student_Manager
         }
     }
 
-    //[Q2] method tìm sinh viên có điểm cao nhất
     public void FindStudentMaxPoint()
     {
         Student maxPoint = null;
@@ -96,12 +85,10 @@ class Student_Manager
             }
         }
 
-        // in kết quả
         Console.WriteLine("Thông tin sinh viên có điểm cao nhất là: ");
         maxPoint.PrintInfo();
     }
 
-    //[Q3] method chuyển từ dic sang list
     public List<Student> TransferDicToList()
     {
         List<Student> result = new List<Student>();
@@ -112,7 +99,6 @@ class Student_Manager
         return result;
     }
 
-    // [A2] indexer
     public Student this[string name]
     {
         get
@@ -124,7 +110,6 @@ class Student_Manager
         }
     }
 
-    // [A3] in sinh viên có điểm >= Point
     public void PrintBetterOrEqualsPoint(float Point)
     {
         Console.WriteLine($"Danh sách các sinh viên có điểm lớn hơn hoặc bằng {Point}");
@@ -140,12 +125,11 @@ class Student_Manager
 
 class Student : IPrintable
 {
-    // PROPERTY
+
     public string Id{set; get;}
     public string Name{set; get;}
     public float Point{set; get;}
 
-    // CONSTRUCTOR
     public Student(string id, string name, float point)
     {
         Id = id;
@@ -153,19 +137,16 @@ class Student : IPrintable
         Point = point;
     }
 
-    // IN THÔNG TIN STUDENT
     public void PrintInfo()
     {
         Console.WriteLine($"Id: {Id} | Name: {Name} | Point: {Point}");
     }
 }
 
-// Q1 Generic 
-class Repository<TKey, TValue> where TValue : IPrintable // => miễn class nào mà impletment interface này thì được
+class Repository<TKey, TValue> where TValue : IPrintable
 {
     private Dictionary<TKey, TValue> _data = new Dictionary<TKey, TValue>();
 
-    // method thêm
     public void Add(TKey key, TValue value)
     {
         if( FindKey(key) )
@@ -175,7 +156,6 @@ class Repository<TKey, TValue> where TValue : IPrintable // => miễn class nào
         else _data.Add(key, value);
     }
 
-    // method remove
     public void Remove(TKey key)
     {
         if( FindKey(key) )
@@ -188,7 +168,6 @@ class Repository<TKey, TValue> where TValue : IPrintable // => miễn class nào
         }
     }
 
-    // method lấy value bằng key
     public TValue GetValueByKey(TKey key)
     {
         if( !FindKey(key) )
@@ -199,13 +178,11 @@ class Repository<TKey, TValue> where TValue : IPrintable // => miễn class nào
         return _data[key];
     }
 
-    // method getAll
     public Dictionary<TKey, TValue> getAll()
     {
         return _data;
     }
 
-    // method kiểm tra sự tồn tại của một key
     public bool FindKey(TKey key)
     {
         foreach(KeyValuePair<TKey, TValue> item in _data)
@@ -218,7 +195,6 @@ class Repository<TKey, TValue> where TValue : IPrintable // => miễn class nào
         return false;
     }
 
-    // method in 
     public void PrintRepo()
     {
         foreach(KeyValuePair<TKey, TValue> item in _data)
@@ -229,7 +205,6 @@ class Repository<TKey, TValue> where TValue : IPrintable // => miễn class nào
     }
 }
 
-// interface in thông tin của một object => tác dụng: để  ràng buộc TValue của class Repository
 interface IPrintable
 {
     public void PrintInfo();

@@ -1,4 +1,4 @@
-# Lab05 – OOP & Collections (C#)
+# Lab01 – OOP & Collections (C#)
 
 **Môn:** Lập trình C# | **Giảng viên:** Phieu Tu
 

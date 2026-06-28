@@ -1,7 +1,7 @@
 using System;
-using Lab05.Generic;
+using Lab01.Generic;
 
-namespace Lab05.Generic
+namespace Lab01.Generic
 {
     class Box<T>
     {
@@ -20,7 +20,7 @@ namespace Lab05.Generic
     }
 }
 
-namespace Lab05.Test
+namespace Lab01.Test
 {
     class Test
     {

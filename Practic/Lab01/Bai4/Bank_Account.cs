@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-namespace Lab05.Bai4;
+namespace Lab01.Bai4;
 
 enum AccountType
 {
@@ -173,7 +173,7 @@ class Bank_Account
 {
     public static void Main(string[] args)
     {
-        // =================== SAVING ACCOUNT ===================
+
         Console.WriteLine("==========SavingAccount==========");
         SavingAccount saving1 = new SavingAccount("ACC001", "Nguyen Van A", 10000000);
         SavingAccount saving2 = new SavingAccount("ACC002", "Nguyen Van B", 5000000);
@@ -195,8 +195,6 @@ class Bank_Account
         Console.WriteLine("--------------History----------------");
         saving1.PrintHistory();
 
-
-        // =================== CHECKING ACCOUNT ===================
         Console.WriteLine("==========CheckingAccount==========");
         CheckingAccount checking1 = new CheckingAccount("ACC003", "Tran Van C", 5000000);
         CheckingAccount checking2 = new CheckingAccount("ACC004", "Tran Van D", 3000000);
@@ -217,8 +215,6 @@ class Bank_Account
         Console.WriteLine("--------------History----------------");
         checking1.PrintHistory();
 
-
-        // =================== CREDIT ACCOUNT ===================
         Console.WriteLine("==========CreditAccount==========");
         CreditAccount credit1 = new CreditAccount("ACC005", "Le Van E");
         CreditAccount credit2 = new CreditAccount("ACC006", "Le Van F");

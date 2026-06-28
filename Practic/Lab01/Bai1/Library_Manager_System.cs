@@ -1,25 +1,22 @@
 using System;
-namespace Lab05.Bai1;
+namespace Lab01.Bai1;
 class Library_Manager_System
 {
     private List<Book> listBook = new List<Book>();
     private Dictionary<string, int> author_Book = new Dictionary<string, int>();
     public static void Main(string[] args)
     {
-        // tạo quản lý thư viện
+
         Library_Manager_System libSys = new Library_Manager_System();
 
-        // tạo các cuốn sách lưu vô list
         libSys.listBook.Add(new Book("Clean Code", "Robert Martin", "978-0132350884", 2008));
         libSys.listBook.Add(new Book("The Pragmatic Programmer", "David Thomas", "978-0135957059", 1999));
         libSys.listBook.Add(new Book("Design Patterns", "Gang of Four", "978-0201633610", 1994));
         libSys.listBook.Add(new Book("C++", "Robert Martin", "978-0132350889", 2002));
 
-        // in
         Console.WriteLine("--------------Print listBook------------");
         libSys.PrintListBook();
 
-        // kiểm tra Q1: dùng try catch để bắt lỗi valid
         Console.WriteLine("--------------Kiểm tra Q1------------");
         try
         {
@@ -29,13 +26,11 @@ class Library_Manager_System
         {
             Console.WriteLine($"[ERROR] {e.Message}");
         }
-        libSys.PrintListBook(); //output: không có book mới add vô vì lỗi valid năm
+        libSys.PrintListBook();
 
-
-        // kiểm tra câu Q3: bằng cách thêm một cuốn sách có mã ISBN bị trùng.
         Console.WriteLine("--------------Kiểm tra Q3 (Equals so sánh theo ISBN)------------");
         Book newBook = new Book("Xác suất thống kê", "TTB", "978-0132350884", 1100);
-        if(libSys.listBook.Contains(newBook))      // dùng contain để kiểm tra các mã sách bị trùng
+        if(libSys.listBook.Contains(newBook))
         {
             Console.WriteLine("[ERROR] ISBN của mã sách mới này đã có trong danh sách");
         }
@@ -45,22 +40,18 @@ class Library_Manager_System
             Console.WriteLine("Thêm cuốn sách mới thành công");
         }
 
-        // kiểm tra A1 check method CompareTo
         Console.WriteLine("--------------Kiểm tra A1(Implement CompareTo)------------");
-        libSys.listBook.Sort(); // tự nhận 
+        libSys.listBook.Sort();
         libSys.PrintListBook();
 
-        // Kiểm tra A2
         Console.WriteLine("--------------Kiểm tra A2(Lấy các cuốn sách sau năm year)------------");
         libSys.PrintListBook(libSys.GetBookAfterYear(2000));
 
-        // kiểm tra A3
         Console.WriteLine("--------------Kiểm tra A3(Đếm số sách của từng tác giả)------------");
         libSys.author_Book = libSys.CountBookByAuthor();
         libSys. PrintResultA3();
     }
 
-    // method in danh sách book
     public void PrintListBook()
     {
         foreach(Book item in listBook )
@@ -68,7 +59,7 @@ class Library_Manager_System
             Console.WriteLine($"Title: {item.Title} | Author: {item.Author} | ISBN: {item.ISBN} | Year Published: {item.YearPublished}");
         }
     }
-    // overload method nếu có tham số
+
     public void PrintListBook(List<Book> result)
     {
         foreach(Book item in result )
@@ -77,7 +68,6 @@ class Library_Manager_System
         }
     }
 
-    // A2 => đề nên thêm parameter List<Book> 
     public List<Book> GetBookAfterYear(int year)
     {
         List<Book> result = new List<Book>();
@@ -91,7 +81,6 @@ class Library_Manager_System
         return result;
     }
 
-    // A3
     public Dictionary<string, int> CountBookByAuthor()
     {
         Dictionary<string, int> result = new Dictionary<string, int>();
@@ -108,7 +97,7 @@ class Library_Manager_System
         }
         return result;
     }
-    // in ra kết quả của A3
+
     public void PrintResultA3()
     {
         foreach(KeyValuePair<string, int> item in author_Book)
@@ -121,7 +110,7 @@ class Library_Manager_System
 
 class Book : IComparable<Book>
 {
-    // PROPERTY
+
     private string _title;
     public string Title
     {
@@ -158,7 +147,6 @@ class Book : IComparable<Book>
         get{ return _yearPublished; }
     }
 
-    // CONSTRUCTOR
     public Book(string title, string author, string isbn, int yearPublished)
     {
         Title = title;
@@ -183,7 +171,6 @@ class Book : IComparable<Book>
         YearPublished = 0;
     }
 
-    // Q3 ghi đè method Equals của object
     public override bool Equals(object obj)
     {
         if(obj == null) return false;
@@ -192,15 +179,14 @@ class Book : IComparable<Book>
         return ISBN == other.ISBN;
     }
 
-    // A1 implement của method CompareTo
-    /*
-        this.Year < other.Year  →  số âm  →  sách này đứng TRƯỚC
-        this.Year == other.Year →  0      →  hai sách bằng nhau
-        this.Year > other.Year  →  số dương → sách này đứng SAU
-    */
+    public override int GetHashCode()
+    {
+        return ISBN?.GetHashCode() ?? 0;
+    }
+
     public int CompareTo(Book other)
     {
-        if (other == null) return 1; // this lớn hơn null
+        if (other == null) return 1;
         return this.YearPublished - other.YearPublished;
     }
 }
