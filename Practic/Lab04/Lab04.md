@@ -59,4 +59,3 @@ npm run build
 ```
 
 Tài khoản mẫu: `admin` / `1234`.
-

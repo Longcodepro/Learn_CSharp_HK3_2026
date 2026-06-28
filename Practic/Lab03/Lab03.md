@@ -58,4 +58,3 @@ Sau khi chạy, dùng URL được in trong terminal để truy cập:
    tránh công khai chi tiết API ngoài ý muốn ở production.
 4. Swagger UI và `curl` gửi cùng loại HTTP request; Swagger có giao diện tương tác,
    còn `curl` phù hợp với terminal và script tự động.
-

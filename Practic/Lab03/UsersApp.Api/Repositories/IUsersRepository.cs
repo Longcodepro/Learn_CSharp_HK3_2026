@@ -8,4 +8,3 @@ public interface IUsersRepository
     User? GetById(long id);
     User Add(User user);
 }
-

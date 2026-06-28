@@ -46,4 +46,3 @@ class Dog2 : Animal
         throw new NotImplementedException("Chức năng sủa chưa được lập trình!");
     }
 }
-

@@ -22,4 +22,3 @@ Thực hành các cấu trúc lưu trữ dữ liệu phổ biến trong C#:
 
 Project có nhiều hàm `Main`. Chọn bài cần chạy làm startup object trong IDE trước
 khi thực thi.
-
