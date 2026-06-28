@@ -14,20 +14,17 @@ public class CourseController : ControllerBase
         _repo = repo;
     }
 
-    // GET api/course
     [HttpGet]
     public IActionResult GetAll()
         => Ok(_repo.GetAll());
 
-    // GET /api/student/{id}
     [HttpGet("{id:int}")]
     public IActionResult GetById(int id)
     {
         var course = _repo.GetById(id);
         return course is null ? NotFound() : Ok(course);
     }
-    
-    // Get /api/course/{name}
+
     [HttpGet("{name}")]
     public IActionResult GetByName(string name)
     {
@@ -35,7 +32,6 @@ public class CourseController : ControllerBase
         return course is null ? NotFound() : Ok(course);
     }
 
-    // POST /api/course
     [HttpPost]
     public IActionResult Create([FromBody] Course course)
     {
@@ -43,7 +39,6 @@ public class CourseController : ControllerBase
         return CreatedAtAction(nameof(GetByName), new { name = course.CourseName }, course);
     }
 
-    //PUT api/course
     [HttpPut]
     public IActionResult Update([FromBody] Course course)
     {
@@ -51,7 +46,6 @@ public class CourseController : ControllerBase
         return NoContent();
     }
 
-    // DELETE /api/course/{id}
     [HttpDelete("{id:int}")]
     public IActionResult Delete(int id)
     {

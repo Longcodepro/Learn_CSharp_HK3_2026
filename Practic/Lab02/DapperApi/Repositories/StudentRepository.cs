@@ -13,18 +13,15 @@ public class StudentRepository : IStudentRepository
         _connStr = config.GetConnectionString("DefaultConnection")!;
     }
 
-    // Tạo connection mới mỗi lần gọi
     private IDbConnection NewConnection()
         =>new SqlConnection(_connStr);
 
-    // GET ALL
     public IEnumerable<Student> GetAll()
     {
         using var db = NewConnection();
         return db.Query<Student>("SELECT * FROM Students");
     }
 
-    // GET BY ID
     public Student?  GetById(int id)
     {
         using var db = NewConnection();
@@ -33,7 +30,6 @@ public class StudentRepository : IStudentRepository
             new { Id = id });
     }
 
-    // CREATE 
     public void Create(Student student)
     {
         using var db = NewConnection();
@@ -42,7 +38,6 @@ public class StudentRepository : IStudentRepository
             student);
     }
 
-    // UPDATE
     public void Update(Student student)
     {
         using var db = NewConnection();
@@ -51,7 +46,6 @@ public class StudentRepository : IStudentRepository
             student);
     }
 
-    // DELETE
     public void Delete(int id)
     {
         using var db = NewConnection();
@@ -60,16 +54,14 @@ public class StudentRepository : IStudentRepository
             new { Id = id });
     }
 
-    // Tìm kiếm sinh viên theo tên (GET)
     public Student? GetByName(string name)
     {
         using var db = NewConnection();
         return db.QuerySingleOrDefault<Student>(
             "SELECT * FROM Students WHERE Name = @Name",
             new { Name = name });
-    } 
+    }
 
-    // GET ALL WITH COURSES (multi-mapping)
     public IEnumerable<StudentWithCourses> GetAllWithCourses()
     {
         var sql = @"
@@ -84,7 +76,7 @@ public class StudentRepository : IStudentRepository
 
         db.Query<StudentWithCourses, Course, StudentWithCourses>(
             sql,
-            (student, course) =>    // dùng lamda
+            (student, course) =>
             {
                 if (!dict.TryGetValue(student.Id, out var existing))
                 {

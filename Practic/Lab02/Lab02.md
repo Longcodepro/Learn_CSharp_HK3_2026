@@ -1,3 +1,5 @@
+# Lab02 – ASP.NET Web API với Dapper
+
 Luồng request: HTTP Request → Gọi phương thức → Truyền SQL → Execute → Mapped Objects → JSON Response
 
 ---
