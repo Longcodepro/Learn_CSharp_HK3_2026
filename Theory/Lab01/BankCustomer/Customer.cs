@@ -17,7 +17,6 @@ namespace Lab01.BankCustomer
             get{ return _soDu; }
         }
 
-        // Constructor
         public Customer()
         {
             _name = "";
@@ -30,7 +29,6 @@ namespace Lab01.BankCustomer
             _soDu = soDu;
         }
 
-        // method nap tien
         public void napTien()
         {
             double soTienCanNap;
@@ -48,7 +46,6 @@ namespace Lab01.BankCustomer
             }
         }
 
-        // method rút tiền
         public void rutTien()
         {
             double soTienCanRut;
@@ -66,7 +63,6 @@ namespace Lab01.BankCustomer
             }
         }
 
-        // method trừ và nhận tiền
         public void nhanTien(double bill, string nguoiChuyen)
         {
             _soDu += bill;
