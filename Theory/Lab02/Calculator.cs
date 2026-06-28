@@ -4,7 +4,7 @@ namespace Lab02
 {
     public class Calculator
     {
-        // ---- method definitions ----
+
         private bool TryReadInt(string prompt, out int result)
         {
             Console.Write($"{prompt} \n >");
@@ -23,7 +23,6 @@ namespace Lab02
             }
         }
 
-        // ----- method PrintFinalEquation -----
         private void PrintFinalEquation(int n1, int n2, string @operator)
         {
             if( !EqualsCaseInsensitive(@operator) )
@@ -70,13 +69,11 @@ namespace Lab02
             }
         }
 
-        // ---- method menu -----
         private void menu()
         {
             Console.WriteLine("[A]-Cộng (Add)\n[B]-Trừ (Subtract)\n[M]-Nhân (Multiply)\n[D]-Chia (Divide)");
         }
 
-        // --- method choose operator -----
         private readonly string[] listOperator = {"A", "B", "M", "D"};
         private string ChooseOperator()
         {
@@ -86,7 +83,6 @@ namespace Lab02
             return @operator;
         }
 
-        // ----- method EqualsCaseInsensitive -----
         private bool EqualsCaseInsensitive(string @operator)
         {
             if( listOperator.Any(c => c == @operator.ToUpper() || c == @operator.ToLower()) )
@@ -99,7 +95,6 @@ namespace Lab02
             }
         }
 
-        // --- method activate -----
         public void Activate()
         {
             Console.Clear();
